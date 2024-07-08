@@ -25,14 +25,12 @@ public class FlorEntityServiceImpl implements FlorEntityService{
         florEntity.setPaisflor(florEntityDTO.getPaisFlor());
         return florEntity;
     }
-
     @Override
     public FlorEntityDTO save(FlorEntityDTO florEntityDTO){
         FlorEntity florEntity = toEntity(florEntityDTO);
         repository.save(florEntity);
         return florEntityDTO;
     }
-
     @Override
     public FlorEntityDTO update(FlorEntityDTO florEntityDTO){
         Optional<FlorEntity> optionalFlorEntity = repository.findById(florEntityDTO.getPk_FlorID());
@@ -44,7 +42,6 @@ public class FlorEntityServiceImpl implements FlorEntityService{
             throw new RuntimeException("Flor no encontrada con ID: " + florEntityDTO.getPk_FlorID());
         }
     }
-
     @Override
     public String deleteById(int id) {
         Optional<FlorEntity> optionalFlorEntity = repository.findById(id);
@@ -55,7 +52,6 @@ public class FlorEntityServiceImpl implements FlorEntityService{
             throw new EntityNotFoundException("No se ha encontrado la flor a eliminar");
         }
     }
-
     @Override
     public FlorEntityDTO findById(int id) {
         Optional<FlorEntity> optionalFlorEntity = repository.findById(id);
@@ -66,7 +62,6 @@ public class FlorEntityServiceImpl implements FlorEntityService{
             return toDTO(florEntity);
         }
     }
-
     @Override
     public List<FlorEntityDTO> findAll() {
         List<FlorEntity> florEntities = repository.findAll();

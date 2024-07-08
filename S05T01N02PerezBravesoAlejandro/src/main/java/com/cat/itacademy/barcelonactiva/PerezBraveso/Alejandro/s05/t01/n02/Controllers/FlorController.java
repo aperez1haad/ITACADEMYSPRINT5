@@ -7,7 +7,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind .annotation.*;
 
 import java.util.List;
 
@@ -28,6 +28,16 @@ public class FlorController {
             return ResponseEntity.ok(florEntityDTO1);
         }catch(EntityNotFoundException x){
             x.getMessage();
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteFlor(@PathVariable int id){
+        try {
+            String mensaje = service.deleteById(id);
+            return ResponseEntity.ok(mensaje);
+        } catch (EntityNotFoundException enfe){
+            enfe.getMessage();
             return ResponseEntity.notFound().build();
         }
     }

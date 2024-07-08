@@ -33,11 +33,11 @@ public class FlorEntityServiceImpl implements FlorEntityService {
         }
     }
     @Override
-    public FlorEntityDTO update(FlorEntityDTO florEntityDTO) {
+    public FlorEntityDTO update(int id, FlorEntityDTO florEntityDTO) {
         try {
             return webClient
                     .put()
-                    .uri("/flor/update/{id}")
+                    .uri("/update/{id}",id)
                     .bodyValue(florEntityDTO)
                     .retrieve()
                     .bodyToMono(FlorEntityDTO.class)
@@ -55,7 +55,7 @@ public class FlorEntityServiceImpl implements FlorEntityService {
         try {
             return webClient
                     .delete()
-                    .uri("/flor/delete/{id}", id)
+                    .uri("/delete/{id}", id)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
@@ -72,7 +72,7 @@ public class FlorEntityServiceImpl implements FlorEntityService {
         try {
             return webClient
                     .get()
-                    .uri("/flor/getOne/{id}", id)
+                    .uri("/getOne/{id}", id)
                     .retrieve()
                     .bodyToMono(FlorEntityDTO.class)
                     .block();
@@ -89,7 +89,7 @@ public class FlorEntityServiceImpl implements FlorEntityService {
         try {
             return webClient
                     .get()
-                    .uri("/flor/getAll")
+                    .uri("/getAll")
                     .retrieve()
                     .bodyToFlux(FlorEntityDTO.class)
                     .collectList()

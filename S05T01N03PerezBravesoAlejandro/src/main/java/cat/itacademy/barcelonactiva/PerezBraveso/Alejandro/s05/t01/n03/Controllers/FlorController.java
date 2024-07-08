@@ -30,12 +30,10 @@ public class FlorController {
     }
 
     @PutMapping("/clientFlorsUpdate/{id}")
-    public ResponseEntity<FlorEntityDTO> updateFlor (@RequestBody FlorEntityDTO florDTO){
-        FlorEntityDTO florEntityDTO;
-
+    public ResponseEntity<FlorEntityDTO> updateFlor (@PathVariable int id, @RequestBody FlorEntityDTO florDTO){
         try {
-            florEntityDTO = service.update(florDTO);
-            return ResponseEntity.ok(florEntityDTO);
+            FlorEntityDTO florEntityDTO1 = service.update(id, florDTO);
+            return ResponseEntity.ok(florEntityDTO1);
         } catch (RuntimeException rte) {
             System.out.println(rte.getMessage());
             return ResponseEntity.notFound().build();

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FlorEntityService {
     FlorEntityDTO save(FlorEntityDTO florEntityDTO);
-    FlorEntityDTO update(FlorEntityDTO florEntityDTO);
+    FlorEntityDTO update(int id, FlorEntityDTO florEntityDTO);
     String deleteById(int id);
     FlorEntityDTO findById(int id);
     List<FlorEntityDTO> findAll();
